@@ -57,7 +57,7 @@ class SegPipeline:
     # 图片预处理
     def preprocess(self, image):
         shape = image.shape[:2]  # original image shape
-        img = cv2.resize(image, (self.model_height, self.model_width), interpolation=cv2.INTER_LINEAR)
+        img = cv2.resize(image, (self.model_width, self.model_height), interpolation=cv2.INTER_LINEAR)
 
         # Transforms: HWC to CHW -> BGR to RGB -> div(255) -> contiguous -> add axis(optional)
         img = np.ascontiguousarray(np.einsum('HWC->CHW', img)[::-1], dtype=self.ndtype) / 255.0
